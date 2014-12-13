@@ -1,21 +1,12 @@
 package rabbitAndTortoise;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by alshevchuk on 12.12.2014.
  */
 public class DataCollection<T> {
-    private List<T> storage = new ArrayList<>();
     private Entry<T> thisEntry = null;
 
-    public T getNext(Entry<T> o) {
-        return null;
-    }
-
     public Entry<T> add(T o) {
-        storage.add(o);
         Entry<T> newEntry = new Entry<>(o);
 
         if (thisEntry != null) {
@@ -29,37 +20,44 @@ public class DataCollection<T> {
         return newEntry;
     }
 
-    class Entry<T> {
-        private T entry = null;
-        private Entry<T> nextEntry = null;
-        private Entry<T> prevEntry = null;
+    public Entry<T> addBrokenEntry(Entry<T> entryToBroke, Entry<T> forcePrevEntry, Entry<T> forceNextEntry) {
+        entryToBroke.setNextEntry(forceNextEntry);
+        entryToBroke.setPrevEntry(forcePrevEntry);
 
-        public Entry(T entry) {
+        return entryToBroke;
+    }
+
+    class Entry<V> {
+        private V entry = null;
+        private Entry<V> nextEntry = null;
+        private Entry<V> prevEntry = null;
+
+        public Entry(V entry) {
             this.entry = entry;
         }
 
-        public void setNextEntry(Entry<T> nextEntry) {
+        public void setNextEntry(Entry<V> nextEntry) {
             this.nextEntry = nextEntry;
         }
 
-        public void setPrevEntry(Entry<T> prevEntry) {
+        public void setPrevEntry(Entry<V> prevEntry) {
             this.prevEntry = prevEntry;
         }
 
-        public Entry<T> getNextEntry() {
+        public Entry<V> getNextEntry() {
             return nextEntry;
         }
 
-        public Entry<T> getPrevEntry() {
+        public Entry<V> getPrevEntry() {
             return prevEntry;
         }
 
-        public T getEntry() {
+        public V getEntry() {
             return entry;
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return entry.toString();
         }
     }
