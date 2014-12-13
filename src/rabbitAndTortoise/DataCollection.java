@@ -1,7 +1,6 @@
 package rabbitAndTortoise;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -11,11 +10,7 @@ public class DataCollection<T> {
     private List<T> storage = new ArrayList<>();
     private Entry<T> thisEntry = null;
 
-    public Iterator<T> getIterator() {
-        return storage.iterator();
-    }
-
-    public T getNext(T o) {
+    public T getNext(Entry<T> o) {
         return null;
     }
 
@@ -34,7 +29,7 @@ public class DataCollection<T> {
         return newEntry;
     }
 
-    private class Entry<T> {
+    class Entry<T> {
         private T entry = null;
         private Entry<T> nextEntry = null;
         private Entry<T> prevEntry = null;
@@ -61,6 +56,11 @@ public class DataCollection<T> {
 
         public T getEntry() {
             return entry;
+        }
+
+        @Override
+        public String toString(){
+            return entry.toString();
         }
     }
 }
