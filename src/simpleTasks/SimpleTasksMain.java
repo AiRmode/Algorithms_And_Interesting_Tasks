@@ -1,6 +1,8 @@
 package simpleTasks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -16,11 +18,34 @@ public class SimpleTasksMain {
         uniformRun();
         binarySearchRun();
         bubbleSortRun();
+        fibonachiRun();
+    }
+
+    private static void fibonachiRun() {
+        int N = 15;
+        List<Integer> fibo = calcNFirstFibonachi(N);
+        System.out.println("Fibonachi: " + fibo.toString());
+    }
+
+    private static List<Integer> calcNFirstFibonachi(int n) {
+        List<Integer> result = new ArrayList<>(n);
+        int current = 0;
+        int next = 1;
+        result.add(current);
+        result.add(next);
+        while (n > 0) {
+            int fibo = current + next;
+            current = next;
+            next = fibo;
+            n--;
+            result.add(fibo);
+        }
+        return result;
     }
 
     private static void bubbleSortRun() {
         Integer[] srcArray = {
-                10, 1, 22, 6, 8, 3, 9, 33, 48, 5, 17, 19, 3, 4, 98
+                100, 1, 22, 6, 8, 3, 9, 33, 48, 5, 17, 19, 3, 4, 98
         };
         System.out.println("SrcArray: " + Arrays.asList(srcArray));
         bubbleSort(srcArray);
